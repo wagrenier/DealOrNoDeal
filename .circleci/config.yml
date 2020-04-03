@@ -10,9 +10,4 @@
      steps:
        - checkout
        - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
-    
-    test:
-      executor: win/default 
-     
-     steps:
        - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
