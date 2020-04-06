@@ -11,8 +11,7 @@ jobs:
       - checkout
       - run:
           command: |
-            docker build -t DealOrNoDeal .
-            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker tag boku nfs333/dealornodeal
+            docker build -t dealornodeal .
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push nfs333/dealornodeal
 
