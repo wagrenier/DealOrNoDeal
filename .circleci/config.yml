@@ -9,7 +9,6 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      - docker/check
       - run:
           command: |
             docker build -f Dockerfile ..
