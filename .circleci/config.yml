@@ -15,5 +15,6 @@ jobs:
           command: |
             docker build -f DealOrNoDeal/Dockerfile .
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+            docker tag nfs333/dealornodeal
             docker push nfs333/dealornodeal
 
