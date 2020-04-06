@@ -10,5 +10,7 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/check
-      - docker/build
+      - run:
+          command: |
+            docker build -f Dockerfile ..
 
