@@ -11,6 +11,6 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/build:
-        image: dealornodeal
-        dockerfile: DealOrNoDeal/DealOrNoDeal/Dockerfile
+          image: dealornodeal
+          dockerfile: DealOrNoDeal/DealOrNoDeal/Dockerfile
 
