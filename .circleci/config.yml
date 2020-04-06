@@ -9,7 +9,7 @@ jobs:
     executor: win/default
     steps:
       - checkout
-      - docker/build:
-          image: dealornodeal
-          dockerfile: DealOrNoDeal/DealOrNoDeal/Dockerfile
+      - run:
+          command: |
+            docker build DealOrNoDeal/DealOrNoDeal/Dockerfile ..
 
