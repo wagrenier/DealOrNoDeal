@@ -13,6 +13,6 @@ jobs:
           command: |
             docker build -t DealOrNoDeal .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker tag boku nfs333/MyProject
-            docker push nfs333/MyProject
+            docker tag boku nfs333/dealornodeal
+            docker push nfs333/dealornodeal
 
