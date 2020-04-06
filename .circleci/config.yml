@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           command: |
-            docker build -t dealornodeal .
+            docker build -f DealOrNoDeal/DealOrNoDeal/Dockerfile ..
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push nfs333/dealornodeal
 
