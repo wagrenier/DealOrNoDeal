@@ -13,7 +13,7 @@ jobs:
       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
       - run:
           command: |
-            docker build DealOrNoDeal -f DealOrNoDeal/Dockerfile -t aspnetdemo
+            docker build DealOrNoDeal -f DealOrNoDeal/DealOrNoDeal/Dockerfile -t aspnetdemo
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push nfs333/dealornodeal
 
