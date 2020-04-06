@@ -6,8 +6,13 @@
  jobs:
    build_test_and_publish:
      executor: docker/docker
-       steps:
-         - checkout
-        - run:
-          command: | 
-            docker build -f Dockerfile ..
+     steps:
+       - checkout
+       - run:
+         command: | 
+           docker build -f Dockerfile ..
+
+workflows:
+  push:
+    jobs:
+      - build_test_and_publish
