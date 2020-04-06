@@ -1,18 +1,19 @@
- version: 2.1
+version: 2.1
 
- orbs:
-  docker: circleci/docker@1.0.1
+orbs:
+ docker: circleci/docker@1.0.1
 
- jobs:
-   build_test_and_publish:
-     executor: docker/docker
-     steps:
-       - checkout
-       - run:
-         command: | 
-           docker build -f Dockerfile ..
+jobs:
+  build_test_and_publish:
+    executor: docker/docker
+    steps:
+      - checkout
+      - run:
+        command: | 
+          docker build -f Dockerfile ..
 
 workflows:
   push:
     jobs:
       - build_test_and_publish
+
