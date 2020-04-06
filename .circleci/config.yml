@@ -11,5 +11,5 @@ jobs:
       - checkout
       - run:
           command: |
-            docker build -f Dockerfile ..
+            docker build -f DealOrNoDeal/DealOrNoDeal/Dockerfile
 
