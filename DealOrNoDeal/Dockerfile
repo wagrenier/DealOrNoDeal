@@ -1,16 +1,16 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+FROM microsoft/dotnet:3.1-sdk AS build-env
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY ["DealOrNoDeal/DealOrNoDeal.csproj", "./"]
+# copy csproj and restore as distinct layers
+COPY *.csproj ./
 RUN dotnet restore
 
-# Copy everything else and build
+# copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+# build runtime image
+FROM microsoft/dotnet:3.1-runtime 
 WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+COPY --from=build-env /app/out ./
+ENTRYPOINT ["dotnet", "DealOrNoDeal.dll"]
