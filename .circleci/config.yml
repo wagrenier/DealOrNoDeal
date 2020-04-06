@@ -4,16 +4,11 @@ orbs:
  docker: circleci/docker@1.0.1
 
 jobs:
-  build-and-push:
+  build:
     executor: docker/docker
     steps:
       - setup_remote_docker
       - checkout
       - docker/check
-      - docker/build:
-
-workflows:
-  push:
-    jobs:
-      - build-and-push
+      - docker/build
 
