@@ -1,15 +1,16 @@
 version: 2.1
 
 orbs:
+ win: circleci/windows@2.2.0
  docker: circleci/docker@1.0.1
 
 jobs:
   build:
-    executor: docker/docker
+    executor: win/default
     steps:
       - setup_remote_docker
       - checkout
-      - run:
-          command: |
-            docker build -f DealOrNoDeal/DealOrNoDeal/Dockerfile ..
+      - docker/build:
+        image: dealornodeal
+        dockerfile: DealOrNoDeal/DealOrNoDeal/Dockerfile
 
