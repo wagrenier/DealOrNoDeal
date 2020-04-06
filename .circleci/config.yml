@@ -9,6 +9,8 @@ jobs:
     executor: win/default
     steps:
       - checkout
+      - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
+      - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
       - run:
           command: |
             docker build -f DealOrNoDeal/DealOrNoDeal/Dockerfile .
