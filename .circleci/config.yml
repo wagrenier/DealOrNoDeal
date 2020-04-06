@@ -1,13 +1,13 @@
  version: 2.1
 
  orbs:
-  win: circleci/windows@2.2.0
+  docker: circleci/docker@1.0.1
 
  jobs:
-   build:
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
-       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
+   build_test_and_publish:
+     executor: docker/docker
+       steps:
+         - checkout
+        - run:
+          command: | 
+            docker build -f Dockerfile ..
