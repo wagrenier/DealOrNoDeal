@@ -6,13 +6,14 @@ orbs:
 jobs:
   build:
     executor: win/default
+    context: publish
     steps:
       - checkout
       - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
       - run:
           command: |
-            docker login -u nfs333 --password $DOCKER_PASSWORD
+            docker login -u nfs333 -p $DOCKER_PASSWORD
             docker build -t nfs333/dealornodeal:CIRCLE_SHA1 DealOrNoDeal/
             docker push nfs333/dealornodeal:CIRCLE_SHA1
 
