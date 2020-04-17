@@ -1,13 +1,24 @@
- version: 2.1
+version: 2.1
 
- orbs:
-  win: circleci/windows@2.2.0
+orbs:
+ win: circleci/windows@2.2.0
 
- jobs:
-   build:
-     executor: win/default     
+jobs:
+  build:
+    executor: win/default
     
-     steps:
-       - checkout
-       - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
-       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
+    steps:
+      - checkout
+      - run: dotnet build DealOrNoDeal/DealOrNoDeal.sln
+      - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
+      - run:
+          command: |
+            echo $env:DOCKER_PASSWORD | docker login -u nfs333 --password-stdin
+            docker build -t nfs333/dealornodeal DealOrNoDeal/
+            docker push nfs333/dealornodeal
+
+workflows: # a single workflow with a single job called build
+  build:
+    jobs:
+      - build:
+          context: publish
