@@ -13,9 +13,9 @@ jobs:
       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
       - run:
           command: |
-            docker login -u nfs333 -p $DOCKER_PASSWORD
-            docker build -t nfs333/dealornodeal:CIRCLE_SHA1 DealOrNoDeal/
-            docker push nfs333/dealornodeal:CIRCLE_SHA1
+            docker login -u nfs333 -p $env:DOCKER_PASSWORD
+            docker build -t nfs333/dealornodeal DealOrNoDeal/
+            docker push nfs333/dealornodeal
 
 workflows: # a single workflow with a single job called build
   build:
