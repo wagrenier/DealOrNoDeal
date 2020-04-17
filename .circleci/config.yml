@@ -14,6 +14,6 @@ jobs:
       - run:
           command: |
             docker build DealOrNoDeal/DealOrNoDeal/
-            echo docker login -u $DOCKER_USERNAME --password $DOCKER_PASSWORD
+            echo docker login -u DOCKER_USERNAME --password DOCKER_PASSWORD
             docker push nfs333/dealornodeal
 
