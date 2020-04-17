@@ -13,7 +13,7 @@ jobs:
       - run: dotnet test DealOrNoDeal/DealOrNoDeal.sln
       - run:
           command: |
-            docker build DealOrNoDeal/DealOrNoDeal/
+            docker build -t nfs333/dealornodeal:CIRCLE_SHA1 DealOrNoDeal/DealOrNoDeal/
             docker login -u DOCKER_USERNAME --password DOCKER_PASSWORD
             docker push nfs333/dealornodeal:CIRCLE_SHA1
 
