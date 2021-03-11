@@ -1,0 +1,62 @@
+name: DealOrNoDeal Publish
+
+on: 
+  workflow_dispatch:
+    inputs:
+      Pre-release:
+        description: 'Is this a pre-release?'     
+        required: true
+        default: 'false'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      # Sets up the automatic version tool
+      - uses: gittools/actions/gitversion/setup@v0.9.7
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        with:
+          versionSpec: '5.x.x'
+          includePrerelease: true
+          
+      - name: Use GitVersion
+        id: gitversion # step id used as reference for output values
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        
+      # Creates a new tag with automatic version
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "${{ steps.gitversion.outputs.majorMinorPatch }}"
+          release_name: Analyse Release ${{ steps.gitversion.outputs.majorMinorPatch }}
+          draft: false
+          prerelease: ${{ github.event.inputs.pre-release }}
+          
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: docker.pkg.github.com
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+         
+      # Build and publish the Docker images
+      - name: Build and push Docker api
+        uses: docker/build-push-action@v1
+        with:
+          repository: wagrenier/dealornodeal
+          dockerfile: DealOrNoDeal/Dockerfile
+          tags: latest,${{steps.gitversion.outputs.majorMinorPatch}}
+          
