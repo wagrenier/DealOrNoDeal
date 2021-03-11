@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore DealOrNoDeal/DealOrNoDeal.sln
+      run: dotnet restore DealOrNoDeal.sln
     - name: Build
-      run: dotnet build DealOrNoDeal/DealOrNoDeal.sln --no-restore
+      run: dotnet build DealOrNoDeal.sln --no-restore
     - name: Test
-      run: dotnet test DealOrNoDeal/DealOrNoDeal.sln --no-build --verbosity normal
+      run: dotnet test DealOrNoDeal.sln --no-build --verbosity normal

@@ -57,6 +57,5 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           repository: wagrenier/dealornodeal
-          dockerfile: DealOrNoDeal/Dockerfile
           tags: latest,${{steps.gitversion.outputs.majorMinorPatch}}
           
