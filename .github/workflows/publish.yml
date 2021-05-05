@@ -41,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: "${{ steps.gitversion.outputs.majorMinorPatch }}"
-          release_name: Analyse Release ${{ steps.gitversion.outputs.majorMinorPatch }}
+          release_name: DealOrNoDeal v${{ steps.gitversion.outputs.majorMinorPatch }}
           draft: false
           prerelease: ${{ github.event.inputs.pre-release }}
           
