@@ -20,18 +20,14 @@ jobs:
           fetch-depth: 0
       
       # Sets up the automatic version tool
-      - uses: gittools/actions/gitversion/setup@v0.9.7
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      - uses: gittools/actions/gitversion/setup@v0.9.11
         with:
           versionSpec: '5.x.x'
           includePrerelease: true
           
       - name: Use GitVersion
         id: gitversion # step id used as reference for output values
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        uses: gittools/actions/gitversion/execute@v0.9.11
         
       # Creates a new tag with automatic version
       - name: Create release
